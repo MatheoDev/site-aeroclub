@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import Navbar from './components/Navbar'
 import GlobalStyle from './GlobalStyle'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import DropMenu from './components/DropMenu'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
+import Forfaits from './pages/Forfaits'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,12 +14,24 @@ function App() {
 
   return (
     <>
-      <Router>
         <GlobalStyle />
-        <Navbar toggle={toggle} />
-        <DropMenu isOpen={isOpen} toggle={toggle} />
-        <Home />
-      </Router>
+        <main>
+          <section className="glass">
+            <Router>
+              <Navbar toggle={toggle}/>
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route path="/forfaits" component={Forfaits} exact />
+              </Switch>
+            </Router>
+          </section>
+        </main>
+        <div className="circle1">
+          
+        </div>
+        <div className="circle2">
+          
+        </div>
     </>
   );
 }

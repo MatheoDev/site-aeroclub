@@ -1,13 +1,14 @@
 import React from 'react'
-import Avion from '../components/Avion'
-import Forfait from '../components/Forfait'
+import styled from 'styled-components'
+
+const Wrapper = styled.section`
+    width: 80%;
+`
 
 const Home = () => {
     return (
-        <>
-            <Forfait />
-            <Avion />
-        </>
+        <Wrapper>
+        </Wrapper>
     )
 }
 

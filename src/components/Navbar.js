@@ -1,59 +1,45 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { FaBars } from 'react-icons/fa'
-import { GiBiplane } from 'react-icons/gi'
 import { NavLink } from 'react-router-dom'
 
 const Nav = styled.nav`
+    width: 20%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #222831;
-    padding: 20px 40px;
-    box-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
 `
 
 const NavLinkS = css`
-    color: #e8e8e8;
-    padding: 0 10px;
-    height: 100%;
-    cursor: pointer;
+    padding: 10px 0;
     text-decoration: none;
     transition: all 0.5s ease;
-    font-size: 1.1em;
+    color: #30475e;
     font-weight: 600;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 
     &.is-active, &:hover {
-        text-decoration: underline;
-        text-underline-offset: 4px;
-        color: #f05454;
+        background-color: rgba(255,255,255,0.4);
     }
 `
 
 const Logo = styled.div`
     ${NavLinkS}
-    font-size: 1.4em;
-
-    &:hover {
-        text-decoration: none;
-    }
+    font-size: 2em;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 `
 
 const MenuBars = styled(FaBars)`
     display: none;
-
-    @media screen and (max-width: 768px) {
-        display: block;
-        font-size: 1.3em;
-        color: #e8e8e8;
-    }
 `
 
 const NavMenu = styled.div`
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 `
 
 const NavMenuLink = styled(NavLink)`
@@ -61,35 +47,35 @@ const NavMenuLink = styled(NavLink)`
 `
 
 const NavMenuBtn = styled(NavLink)`
-    ${NavLinkS}
-    display: block;
-    background-color: #f05454;
-    border-radius: 15px;
-    padding: 7px 15px;
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.7);
+    background: #f05454;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 15px 25px;
     transition: all 0.5s ease;
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
 
     &:hover {
         text-decoration: none;
         color: white;
         transform: translateY(-2px);
+        background: #ed2c2c;
     }
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+    
 `
 
 const Navbar = ({toggle}) => {
     
     return(
         <Nav>
-            <Logo to='/'>Aeroclub <GiBiplane /></Logo>
+            <Logo to='/'>Aeroclub</Logo>
             <MenuBars onClick={toggle} />
             <NavMenu>
                 <NavMenuLink exact activeClassName='is-active' to='/'>Accueil</NavMenuLink>
-                <NavMenuLink exact activeClassName='is-active' to='forfait'>Forfaits</NavMenuLink>
-                <NavMenuLink exact activeClassName='is-active' to='avions'>Avions</NavMenuLink>
-                <NavMenuLink exact activeClassName='is-active' to='avions'>Contact</NavMenuLink>
+                <NavMenuLink exact activeClassName='is-active' to='/forfaits'>Forfaits</NavMenuLink>
+                <NavMenuLink exact activeClassName='is-active' to='/avions'>Avions</NavMenuLink>
+                <NavMenuLink exact activeClassName='is-active' to='/contact'>Contact</NavMenuLink>
             </NavMenu>
             <NavMenuBtn exact activeClassName='is-active' to='/login'>Connexion</NavMenuBtn>
         </Nav>

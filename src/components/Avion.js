@@ -15,7 +15,7 @@ const Avion = () => {
 
     return (
         <>
-            {  
+            {
                 avions &&
                 avions.map((element) => {
                     return (
