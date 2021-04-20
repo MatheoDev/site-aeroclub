@@ -12,4 +12,4 @@ class apiRequest {
 
 }
 
-export default new apiRequest
+export default new apiRequest()

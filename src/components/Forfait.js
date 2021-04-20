@@ -19,7 +19,7 @@ const Forfait = () => {
                 forfaits &&
                 forfaits.map((element) => {
                     return (
-                        <div key={element.id}>
+                        <div key={element.libelle+element.id}>
                             {element.libelle}
                         </div>
                     )
