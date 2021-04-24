@@ -4,6 +4,7 @@ import GlobalStyle from './GlobalStyle'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Forfaits from './pages/Forfaits'
+import Avions from './pages/Avions'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,6 +23,7 @@ function App() {
               <Switch>
                 <Route path="/" component={Home} exact />
                 <Route path="/forfaits" component={Forfaits} exact />
+                <Route path="/avions" component={Avions} exact />
               </Switch>
             </Router>
           </section>

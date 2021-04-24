@@ -38,12 +38,12 @@ const GlobalStyle = createGlobalStyle`
         border-radius: 50%;
     }
     .circle1 {
-        bottom: 3%;
+        bottom: 4%;
         left: 3%;
     }
     .circle2 {
-        top: 5%;
-        right: 5%;
+        top: 4%;
+        right: 3%;
     }
 `
 

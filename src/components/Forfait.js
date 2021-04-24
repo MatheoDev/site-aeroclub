@@ -44,7 +44,7 @@ const ForfaitInfo = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50%;
+    bottom: 20px;
     left: 30px;
 
     h3 {
@@ -81,8 +81,9 @@ const Forfait = () => {
                                 <span className="icon"><GiAirplane /></span>
                                 <ForfaitInfo>
                                     <h3>{element.libelle}</h3>
-                                    <span>Heure : {element.heure}h</span>
-                                    <span>Prix : {element.prix}€</span>
+                                    <span><strong>Heure :</strong> {element.heure} h</span>
+                                    <span><strong>Prix :</strong> {element.prix} €</span>
+                                    <span><strong>Ref forfait :</strong> n°{element.id}</span>
                                 </ForfaitInfo>
                             </ForfaitCard>
                         )
