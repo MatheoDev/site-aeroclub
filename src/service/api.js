@@ -10,6 +10,10 @@ class apiRequest {
         return http.get('/avions')
     }
 
+    postLogin(config) {
+        return http.post('/login_check', config)
+    }
+
 }
 
 export default new apiRequest()
