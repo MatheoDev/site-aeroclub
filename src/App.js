@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Forfaits from './pages/Forfaits'
 import Avions from './pages/Avions'
 import Login from './pages/Login'
+import Account from './pages/Account'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/forfaits" component={Forfaits} exact />
                 <Route path="/avions" component={Avions} exact />
                 <Route path="/login" component={(props) => <Login {...props} isAuth={isAuth} />} exact />
+                <Route path="/mon-compte" component={(props) => <Account {...props} login={login} />} exact />
               </Switch>
             </Router>
           </section>

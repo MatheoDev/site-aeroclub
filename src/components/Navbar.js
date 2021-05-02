@@ -29,7 +29,10 @@ const Logo = styled.div`
     ${NavLinkS}
     font-size: 2em;
     font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);*
+    &:hover {
+        background-color: transparent !important;
+    }
 `
 
 const MenuBars = styled(FaBars)`

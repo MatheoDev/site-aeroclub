@@ -110,7 +110,8 @@ class Login extends Component {
                 this.setState({errors: false})
                 if (response.status === 200) {
                     this.props.isAuth(true)
-                    this.props.history.push("/");
+                    localStorage.setItem('idUser', response.data.data.id)
+                    this.props.history.push("/mon-compte");
                 }
             })
             .catch(error => {
