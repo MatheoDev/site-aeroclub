@@ -1,10 +1,58 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import api from '../service/api'
+import { Alert, AlertTitle } from '@material-ui/lab'
 
 const Wrapper = styled.section`
     width: 80%;
     overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    form {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        
+        input {
+            font-size: 14px;
+            &[type=email], &[type=password] {
+                margin: 20px 0;
+                padding: 10px 15px;
+                background: linear-gradient(to right bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.3));
+                border: none;
+                border-radius: 30px;
+                border: solid 2px transparent;
+                transition: all 0.5s ease;
+
+                &:focus-visible {
+                    outline: none;
+                    border: solid 2px rgba(102, 255, 102, 0.5);
+                }
+            }
+            &[type=password]{
+                letter-spacing: 6px;
+            }
+            &[type=submit] {
+                padding: 10px;
+                width: 50%;
+                border: solid 2px transparent;
+                background: linear-gradient(to right top, #222831, #343d4b);
+                color: white;
+                text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+                border-radius: 30px;
+                transition: all 0.5s ease;
+
+                &:hover {
+                    border: solid #66ff66 2px;
+                }
+            }
+        }
+    }
 
     ::-webkit-scrollbar {
         width: 10px;
@@ -25,6 +73,13 @@ const Wrapper = styled.section`
     ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.4)); 
     }
+`
+
+const MyAlert = styled(Alert)`
+    position: absolute;
+    width: 60%;
+    top: 100px;
+    margin: 0 auto;
 `
 
 class Login extends Component {
@@ -53,7 +108,9 @@ class Login extends Component {
         api.postLogin(config)
             .then(response => {
                 this.setState({errors: false})
-                console.log(response)
+                if (response.status === 200) {
+                    this.props.history.push("/");
+                }
             })
             .catch(error => {
                 this.setState({errors: true})
@@ -65,14 +122,17 @@ class Login extends Component {
         return (
             <Wrapper>
                 { this.state.errors && 
-                    <div>ERREUR</div>
+                    <MyAlert severity="error">
+                        <AlertTitle>Error</AlertTitle>
+                        Mot de passe ou identifiant incorrect — <strong>Veuillez reassayer</strong>
+                    </MyAlert>
                 }
                 <form onSubmit={this.handleSubmit}>
-                    <label>Email :</label>
-                    <input name="email" type="email" id="email" value={this.state.email} onChange={this.handleChange} />
-                    <label>Mot de passe :</label>
+                    <label htmlFor="email">Email :</label>
+                    <input name="email" type="email" id="email" placeholder="Ex : john.doe@mail.fr" value={this.state.email} onChange={this.handleChange} />
+                    <label htmlFor="password">Mot de passe :</label>
                     <input name="password" type="password" id="password" value={this.state.password} onChange={this.handleChange} />
-                    <input name="submit" type="submit" id="submit" />
+                    <input name="submit" type="submit" id="submit" value="Se connecter"/>
                 </form>
             </Wrapper>
         )

@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     }
     main {
         min-height: 100vh;
-        background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+        background: #222831;
         display: flex;
         align-items: center;
         justify-content: center;
