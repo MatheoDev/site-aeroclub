@@ -65,7 +65,11 @@ const NavMenuBtn = styled(NavLink)`
     
 `
 
-const Navbar = ({toggle}) => {
+const Navbar = ({toggle, login, isAuth}) => {
+
+    const handleClick = (e) => {
+        isAuth(false)
+    }
     
     return(
         <Nav>
@@ -76,8 +80,18 @@ const Navbar = ({toggle}) => {
                 <NavMenuLink exact activeClassName='is-active' to='/forfaits'>Forfaits</NavMenuLink>
                 <NavMenuLink exact activeClassName='is-active' to='/avions'>Avions</NavMenuLink>
                 <NavMenuLink exact activeClassName='is-active' to='/contact'>Contact</NavMenuLink>
+                {
+                    login && 
+                    <NavMenuLink exact activeClassName='is-active' to='/mon-compte'>Mon compte</NavMenuLink>
+                }
             </NavMenu>
-            <NavMenuBtn exact activeClassName='is-active' to='/login'>Connexion</NavMenuBtn>
+            {
+                login ? 
+                <NavMenuBtn exact activeClassName='is-active' to='/' onClick={handleClick}>Se déconnecter</NavMenuBtn>
+                :
+                <NavMenuBtn exact activeClassName='is-active' to='/login'>Connexion</NavMenuBtn>
+            }
+            
         </Nav>
     )
 }

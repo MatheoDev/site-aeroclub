@@ -14,6 +14,14 @@ class apiRequest {
         return http.post('/login_check', config)
     }
 
+    getCurrentMembre(id) {
+        return http.get('/membres?uueract='+id)
+    }
+
+    getSeqvolUser(id) {
+        return http.get('/seq_vols?numMembre='+id)
+    }
+
 }
 
 export default new apiRequest()

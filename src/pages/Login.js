@@ -109,6 +109,7 @@ class Login extends Component {
             .then(response => {
                 this.setState({errors: false})
                 if (response.status === 200) {
+                    this.props.isAuth(true)
                     this.props.history.push("/");
                 }
             })
