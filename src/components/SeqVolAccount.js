@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import api from '../service/api.js'
 import styled from 'styled-components'
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 200,
+  },
+});
 
 const Wrapper = styled.div`
     margin: 40px;
@@ -19,6 +33,7 @@ const Wrapper = styled.div`
 
 const SeqVolAccount = ({idmembre}) => {
     const [seqvol, setSeqvol] = useState()
+    const classes = useStyles()
 
     useEffect(() => {
         async function fetchData() {
@@ -33,14 +48,36 @@ const SeqVolAccount = ({idmembre}) => {
     return (
         <Wrapper>
             <h1>Vos séquences de vols :</h1>
-            {
-                seqvol &&
-                seqvol.map((element) => {
-                    return (
-                        <div key={element.numSeq+element.date}>{element.numSeq}</div>
-                    )
-                })
-            }
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Date du vol</TableCell>
+                            <TableCell align="right">Temps (h)</TableCell>
+                            <TableCell align="right">Motif</TableCell>
+                            <TableCell align="right">Avions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            seqvol &&
+                            seqvol.map((element) => {
+                                console.log(element)
+                                return (
+                                    <TableRow key={element.numSeq+element.date}>
+                                        <TableCell component="th" scope="row">
+                                            {element.date.substring(0,10)}
+                                        </TableCell>
+                                        <TableCell align="right">{element.temps} h</TableCell>
+                                        <TableCell align="right">{element.motif}</TableCell>
+                                        <TableCell align="right">n°{element.numAvion.substring(12)}</TableCell>
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Wrapper>
     )
 }
