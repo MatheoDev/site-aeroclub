@@ -22,6 +22,10 @@ class apiRequest {
         return http.get('/seq_vols?numMembre='+id)
     }
 
+    putSeqVol(id, config) {
+        return http.put('/seq_vols/'+id, config)
+    }
+
 }
 
 export default new apiRequest()

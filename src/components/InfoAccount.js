@@ -39,6 +39,7 @@ const InfoAccount = ({putId}) => {
     useEffect(() => {
         async function fetchData() {
             const request = await api.getCurrentMembre(localStorage.getItem('idUser'))
+            console.log(request.data)
             setMembre(request.data)
             return request
         }

@@ -9,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {GrStatusGood} from 'react-icons/gr'
 
 const useStyles = makeStyles({
   table: {
@@ -33,6 +34,7 @@ const Wrapper = styled.div`
 
 const SeqVolAccount = ({idmembre}) => {
     const [seqvol, setSeqvol] = useState()
+    const [load, setLoad] = useState()
     const classes = useStyles()
 
     useEffect(() => {
@@ -43,7 +45,13 @@ const SeqVolAccount = ({idmembre}) => {
         }
         fetchData()
         // membre && putId(membre.map((element) => { return element.numMembre }))
-    }, [setSeqvol])
+    }, [setSeqvol, load])
+
+    const handleValidate = (numSeq) => {
+        let config = {"forfaitInitiation": true}
+        api.putSeqVol(numSeq, config)
+        setLoad(true)
+    }
     
     return (
         <Wrapper>
@@ -56,13 +64,19 @@ const SeqVolAccount = ({idmembre}) => {
                             <TableCell align="right">Temps (h)</TableCell>
                             <TableCell align="right">Motif</TableCell>
                             <TableCell align="right">Avions</TableCell>
+                            <TableCell align="right">Valider</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
                             seqvol &&
                             seqvol.map((element) => {
-                                console.log(element)
+                                let validation
+                                if (!element.forfaitInitiation) {
+                                    validation = <input type="submit" value="valider" onClick={() => handleValidate(element.numSeq)} />
+                                } else {
+                                    validation = <GrStatusGood />
+                                }
                                 return (
                                     <TableRow key={element.numSeq+element.date}>
                                         <TableCell component="th" scope="row">
@@ -71,6 +85,7 @@ const SeqVolAccount = ({idmembre}) => {
                                         <TableCell align="right">{element.temps} h</TableCell>
                                         <TableCell align="right">{element.motif}</TableCell>
                                         <TableCell align="right">n°{element.numAvion.substring(12)}</TableCell>
+                                        <TableCell align="right">{validation}</TableCell>
                                     </TableRow>
                                 )
                             })
